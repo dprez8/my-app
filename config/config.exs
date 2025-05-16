@@ -24,11 +24,12 @@ config :my_app, MyAppWeb.Endpoint,
   live_view: [signing_salt: "xEgn22Jm"]
 
 config :my_app, MyAppWeb.Keycloak,
-  realm: "my-realm",
-  client_id: "my-app",
+  realm: "pocmoms",
+  client_id: "dma",
   site: "http://localhost:4003",
   scope: "basic",
-  host_uri: "http://localhost:8080"
+  host_uri: "http://localhost:8080",
+  client_secret: System.get_env("KEYCLOAK_CLIENT_SECRET")
 
 # Configures the mailer
 #

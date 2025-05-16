@@ -10,6 +10,14 @@ defmodule MyAppWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :login do
+    plug MyAppWeb.Plugs.VerifySessionToken, client: MyAppWeb.Keycloak
+  end
+
+  pipeline :add_csrf_token do
+    plug MyAppWeb.Plugs.AddCsrfToken
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -19,12 +27,26 @@ defmodule MyAppWeb.Router do
 
     get "/", PageController, :home
     live "/home", HomeLive, :home
-    get "/login_cb", AuthController, :callback
-    post "/auth/login", AuthController, :login
   end
 
   scope "/", MyAppWeb do
+    pipe_through [:add_csrf_token, :browser]
+
+    get "/login_cb", AuthController, :callback
+  end
+
+  scope "/", MyAppWeb do
+    pipe_through [:add_csrf_token, :browser, :login]
+
+    post "/auth/login", AuthController, :login
     post "/auth/logout", AuthController, :logout
+    live "/logged", LoggedLive, :logged
+  end
+
+  scope "/", MyAppWeb do
+    # Your other routes...
+
+    get "/.well-known/appspecific/com.chrome.devtools.json", FallbackController, :handle_devtools
   end
 
   # Other scopes may use custom stacks.

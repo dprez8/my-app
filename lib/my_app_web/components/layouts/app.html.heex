@@ -15,12 +15,14 @@
       <a href="https://github.com/phoenixframework/phoenix" class="hover:text-zinc-700">
         GitHub
       </a>
-      <a
-        href="https://hexdocs.pm/phoenix/overview.html"
-        class="rounded-lg bg-zinc-100 px-2 py-1 hover:bg-zinc-200/80"
-      >
-        Get Started <span aria-hidden="true">&rarr;</span>
-      </a>
+      <form action={~p"/auth/logout"} method="post">
+        <button
+          type="submit"
+          class="inline-block rounded-lg bg-red-600 px-4 py-2 text-white font-semibold hover:bg-red-700"
+        >
+          Logout
+        </button>
+      </form>
     </div>
   </div>
 </header>

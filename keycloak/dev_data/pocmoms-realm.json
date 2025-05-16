@@ -31,7 +31,7 @@
   "registrationEmailAsUsername": false,
   "rememberMe": false,
   "verifyEmail": false,
-  "loginWithEmailAllowed": true,
+  "loginWithEmailAllowed": false,
   "duplicateEmailsAllowed": false,
   "resetPasswordAllowed": false,
   "editUsernameAllowed": false,
@@ -44,6 +44,76 @@
   "quickLoginCheckMilliSeconds": 1000,
   "maxDeltaTimeSeconds": 43200,
   "failureFactor": 30,
+  "users": [
+      {
+        "username": "lsalmeron",
+        "enabled": true,
+        "emailVerified": true,
+        "firstName": "Lucas",
+        "lastName": "Salmerón",
+        "email": "lsalmeron@primary.com.ar",
+        "credentials": [
+          {
+            "type": "password",
+            "value": "Mtz.2091"
+          }
+        ],
+        "realmRoles": [
+          "default-roles-pocmoms"
+        ]
+      },
+      {
+        "username": "dperez",
+        "enabled": true,
+        "emailVerified": true,
+        "firstName": "Diego",
+        "lastName": "Perez",
+        "email": "dperez@primary.com.ar",
+        "credentials": [
+          {
+            "type": "password",
+            "value": "Mtz.2091"
+          }
+        ],
+        "realmRoles": [
+          "default-roles-pocmoms"
+        ]
+      },
+      {
+        "username": "jgarrido",
+        "enabled": true,
+        "emailVerified": true,
+        "firstName": "Pepe",
+        "lastName": "Garrido",
+        "email": "jgarrido@primary.com.ar",
+        "credentials": [
+          {
+            "type": "password",
+            "value": "Mtz.2091"
+          }
+        ],
+        "realmRoles": [
+          "default-roles-pocmoms"
+        ]
+      },
+      {
+        "username": "ggonzalez",
+        "enabled": true,
+        "emailVerified": true,
+        "firstName": "Gabriel",
+        "lastName": "Gonzalez",
+        "email": "ggonzalez@primary.com.ar",
+        "credentials": [
+          {
+            "type": "password",
+            "value": "Mtz.2091"
+          }
+        ],
+        "realmRoles": [
+          "default-roles-pocmoms"
+        ]
+      }
+  ],
   "roles": {
     "realm": [
       {
@@ -299,9 +369,9 @@
           "attributes": {}
         }
       ],
-      "authapi": [],
       "security-admin-console": [],
       "admin-cli": [],
+      "dma": [],
       "account-console": [],
       "broker": [
         {
@@ -618,61 +688,6 @@
       ]
     },
     {
-      "id": "d72a84df-b56b-49f8-80a3-714f1db8d1a5",
-      "clientId": "authapi",
-      "name": "",
-      "description": "",
-      "rootUrl": "",
-      "adminUrl": "",
-      "baseUrl": "",
-      "surrogateAuthRequired": false,
-      "enabled": true,
-      "alwaysDisplayInConsole": false,
-      "clientAuthenticatorType": "client-secret",
-      "secret": "**********",
-      "redirectUris": [
-        "/*"
-      ],
-      "webOrigins": [
-        "/*"
-      ],
-      "notBefore": 0,
-      "bearerOnly": false,
-      "consentRequired": false,
-      "standardFlowEnabled": true,
-      "implicitFlowEnabled": false,
-      "directAccessGrantsEnabled": true,
-      "serviceAccountsEnabled": false,
-      "publicClient": false,
-      "frontchannelLogout": true,
-      "protocol": "openid-connect",
-      "attributes": {
-        "oidc.ciba.grant.enabled": "false",
-        "client.secret.creation.time": "1744836050",
-        "backchannel.logout.session.required": "true",
-        "post.logout.redirect.uris": "+",
-        "oauth2.device.authorization.grant.enabled": "false",
-        "backchannel.logout.revoke.offline.tokens": "false"
-      },
-      "authenticationFlowBindingOverrides": {},
-      "fullScopeAllowed": true,
-      "nodeReRegistrationTimeout": -1,
-      "defaultClientScopes": [
-        "web-origins",
-        "acr",
-        "roles",
-        "profile",
-        "basic",
-        "email"
-      ],
-      "optionalClientScopes": [
-        "address",
-        "phone",
-        "offline_access",
-        "microprofile-jwt"
-      ]
-    },
-    {
       "id": "132cf5d6-c3ef-4302-9176-a60fe8a22f2c",
       "clientId": "broker",
       "name": "${client_broker}",
@@ -698,6 +713,118 @@
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": false,
       "nodeReRegistrationTimeout": 0,
+      "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "roles",
+        "profile",
+        "basic",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    },
+    {
+      "id": "d72a84df-b56b-49f8-80a3-714f1db8d1a5",
+      "clientId": "dma",
+      "name": "",
+      "description": "",
+      "rootUrl": "http://localhost:4003",
+      "adminUrl": "",
+      "baseUrl": "",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "**********",
+      "redirectUris": [
+        "/*"
+      ],
+      "webOrigins": [
+        "/*"
+      ],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "publicClient": false,
+      "frontchannelLogout": true,
+      "protocol": "openid-connect",
+      "attributes": {
+        "client.secret.creation.time": "1744836050",
+        "client.introspection.response.allow.jwt.claim.enabled": "false",
+        "login_theme": "keycloak",
+        "post.logout.redirect.uris": "+",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "backchannel.logout.revoke.offline.tokens": "false",
+        "use.refresh.tokens": "true",
+        "oidc.ciba.grant.enabled": "false",
+        "client.use.lightweight.access.token.enabled": "false",
+        "backchannel.logout.session.required": "true",
+        "client_credentials.use_refresh_token": "false",
+        "tls.client.certificate.bound.access.tokens": "false",
+        "require.pushed.authorization.requests": "false",
+        "acr.loa.map": "{}",
+        "display.on.consent.screen": "false",
+        "token.response.type.bearer.lower-case": "false"
+      },
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "protocolMappers": [
+        {
+          "id": "887ebba2-dea0-447c-8f1f-d193a593dde5",
+          "name": "Client Host",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientHost",
+            "id.token.claim": "true",
+            "introspection.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientHost",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "12a28c59-6abf-4035-a2f7-c1e2473e3017",
+          "name": "Client IP Address",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "clientAddress",
+            "id.token.claim": "true",
+            "introspection.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "clientAddress",
+            "jsonType.label": "String"
+          }
+        },
+        {
+          "id": "98d2ca10-23d5-4c9c-b071-6c7d9f48f39b",
+          "name": "Client ID",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usersessionmodel-note-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.session.note": "client_id",
+            "id.token.claim": "true",
+            "introspection.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "client_id",
+            "jsonType.label": "String"
+          }
+        }
+      ],
       "defaultClientScopes": [
         "web-origins",
         "acr",
@@ -1436,19 +1563,24 @@
   "identityProviders": [
     {
       "alias": "google",
-      "internalId": "20a2d70a-8105-467b-a339-3b1307a757e2",
+      "internalId": "5e37098f-f703-468d-b18e-d1844fa8f3d5",
       "providerId": "google",
       "enabled": true,
       "updateProfileFirstLoginMode": "on",
-      "trustEmail": false,
+      "trustEmail": true,
       "storeToken": false,
       "addReadTokenRoleOnCreate": false,
       "authenticateByDefault": false,
       "linkOnly": false,
       "config": {
-        "syncMode": "LEGACY",
-        "clientSecret": "**********",
+        "hideOnLoginPage": "false",
         "clientId": "537881949187-gjq6tolt8glkq7e1spfdku1sehjl5a9j.apps.googleusercontent.com",
+        "acceptsPromptNoneForwardFromClient": "false",
+        "disableUserInfo": "false",
+        "syncMode": "LEGACY",
+        "filteredByClaim": "false",
+        "clientSecret": "**********",
+        "caseSensitiveOriginalUsername": "false",
         "guiOrder": "1"
       }
     }
@@ -1485,13 +1617,13 @@
         "config": {
           "allowed-protocol-mapper-types": [
             "saml-user-property-mapper",
-            "saml-role-list-mapper",
-            "oidc-sha256-pairwise-sub-mapper",
             "oidc-usermodel-attribute-mapper",
-            "oidc-address-mapper",
             "oidc-usermodel-property-mapper",
+            "oidc-sha256-pairwise-sub-mapper",
             "saml-user-attribute-mapper",
-            "oidc-full-name-mapper"
+            "oidc-full-name-mapper",
+            "saml-role-list-mapper",
+            "oidc-address-mapper"
           ]
         }
       },
@@ -1550,13 +1682,13 @@
         "subComponents": {},
         "config": {
           "allowed-protocol-mapper-types": [
-            "saml-role-list-mapper",
-            "saml-user-attribute-mapper",
-            "oidc-usermodel-property-mapper",
-            "oidc-sha256-pairwise-sub-mapper",
-            "saml-user-property-mapper",
             "oidc-usermodel-attribute-mapper",
+            "saml-role-list-mapper",
             "oidc-full-name-mapper",
+            "saml-user-property-mapper",
+            "oidc-usermodel-property-mapper",
+            "saml-user-attribute-mapper",
+            "oidc-sha256-pairwise-sub-mapper",
             "oidc-address-mapper"
           ]
         }
