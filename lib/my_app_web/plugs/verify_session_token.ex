@@ -20,8 +20,18 @@ defmodule MyAppWeb.Plugs.VerifySessionToken do
 
   defp check_token_state(t, conn, client) do
     case client.introspect(t.access_token) do
-      {:ok, _resp} ->
-        conn
+      {:ok, resp} ->
+        case resp["active"] do
+          true ->
+            conn
+
+          false ->
+            Logger.warning(
+              "[VerifySessionToken:check_token_state] - Token is not active, obtaining new token"
+            )
+
+            conn |> Phoenix.Controller.redirect(external: client.authorize_url!()) |> halt()
+        end
 
       err ->
         err
